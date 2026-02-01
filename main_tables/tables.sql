@@ -2,18 +2,17 @@
 CREATE table users(
     user_id INT PRIMARY KEY AUTO_INCREMENT,
     name VARCHAR(100) NOT NULL,
-    role ENUM('alumni', 'student', 'staff') NOT NULL,
-    graduation_year YEAR NULL,
+    role ENUM('alumni', 'student') NOT NULL,
+    graduation_year YEAR,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
 create table students(
     student_id INT PRIMARY KEY,
-    depeartment VARCHAR(100) NOT NULL,
+    department ENUM('CSE', 'ECE', 'ME', 'CE', 'EE') NOT NULL,
     year_of_study INT NOT NULL,
     FOREIGN KEY (student_id) REFERENCES users(user_id)
 );
-
 create table alumni(
     alumni_id INT PRIMARY KEY AUTO_INCREMENT,
     company VARCHAR(100) NOT NULL,
@@ -56,9 +55,10 @@ CREATE table applications(
 );
 
 CREATE table mentorship(
-    mentor_id int,
+    mentor_id int PRIMARY KEY,
     Foreign Key (mentor_id) REFERENCES alumni(alumni_id),
     mentee_id int,
     Foreign Key (mentee_id) REFERENCES students(student_id),
     start_date DATE NOT NULL
 );
+
