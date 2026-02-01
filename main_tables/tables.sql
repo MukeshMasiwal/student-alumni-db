@@ -44,6 +44,12 @@ CREATE Table jobs(
     posted_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
+CREATE TABLE job_skill (
+    job_id INT,
+    skill_id INT,
+    PRIMARY KEY (job_id, skill_id)
+);
+
 CREATE table applications(
     application_id INT PRIMARY KEY,
     job_id INT,
